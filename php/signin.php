@@ -22,6 +22,40 @@
         }
     ?>
 
+    <?php
+        if($_POST) {
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+            $mysql = new mysqli('localhost', 'root', '', 'provaci_db');
+            if($mysql->connect_errno) {
+                echo 'Errore connessione al database';
+                exit();
+            }
+            $result = $mysql->query("SELECT password FROM user WHERE username='$username'");
+            if(!$result) {
+                echo 'Errore: '.$mysql->error;
+                exit();
+            }
+
+            $user = $result->fetch_assoc();
+            if(!$user) {
+                echo 'Utente non trovato';
+                exit();
+            }
+            if(!password_verify($password, $user['password'])) {
+                echo 'Password errata';
+                exit();
+            }
+
+            $_SESSION['isLogged'] = true;
+            $_SESSION['username'] = $username;
+            $_SESSION['password'] = $password;
+
+            header('location: home.php');
+            exit();
+        }
+    ?>
+
     <main class="form-container">
         <form action="#" method="POST">
             <p class="form-title">Signin</p>
@@ -39,7 +73,20 @@
                 let profile = googleUser.getBasicProfile();
                 let name = profile.getName();
                 let email = profile.getEmail();
-                let 
+                let picture = profile.getImageUrl();
+
+                /* da controllare */
+                $.post('../php/signin.php', {
+                    username: email,
+                    password: name
+                }, function(data) {
+                    if(data == 'ok') {
+                        window.location.href = 'home.php';
+                    } else {
+                        alert(data);
+                    }
+                });
+                /* Effettua la richiesta della password (non obbligatoria) */
             }
 
             function onFailure(error) {
