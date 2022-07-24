@@ -1,80 +1,168 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SOCIAL</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body style="background-color: rgb(226, 114, 142)">
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-  
-    <!--
-      <center>
-        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
-            <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
-        </svg>
+<!DOCTYPE html>
+<html lang="it-IT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#eb0e45">
+    <meta property="og:title" content="Provaci.it">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://127.0.0.1/SitoProvaci/">
+    <meta property="og:image" content="img/og-icon.jpeg">
+    <title>Provaci.it</title>
+    <link rel="stylesheet" href="css/general_style.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <canvas id="background"></canvas>
+    <main class="div-opaque">
+        <h2 class="text title">Benvenuto su Provaci.it</h2>
+        <hr class="hr">
+        <h4 class="text subtitle">Trova la tua anima gemella e PROVACI! Che hai da perdere?!</h4>
+        <a href="php/home.php" class="button-submit">ENTRA ></a>
+    </main>
 
-        ⠀⠀
+    <script>
+        var canvas = document.getElementById("background");
+        var ctx = canvas.getContext("2d");
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
-          <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-        </svg>
-      </center>
-    !-->
+        window.onresize = function() {
+            w = ctx.canvas.width = window.innerWidth;
+            h = ctx.canvas.height = window.innerHeight;
+        };
+        window.onresize();
 
+        lines = [];
 
+        conf = {
+            hue: 5,
+            shadow: false,
+            width: 1,
+            length: 1,
+            emitNum: 2,
+            speed: 1,
+            opacity: 0.6,
+            maxLines: 300
+        };
 
-    <!--  NAVBAR  -->
-    <div class="bar">
-      <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#" style="color:rgb(204, 82, 113)">PROVACI.it</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
-            <ul class="navbar-nav mx-auto">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#" style="color:rgb(204, 82, 112)">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" style="color:rgb(204, 82, 112)">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" style="color:rgb(204, 82, 112)">Pricing</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:rgb(204, 82, 112)">
-                  Dropdown link
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="#" style="color:rgb(204, 82, 112)">Action</a></li>
-                  <li><a class="dropdown-item" href="#" style="color:rgb(204, 82, 112)">Another action</a></li>
-                  <li><a class="dropdown-item" href="#" style="color:rgb(204, 82, 112)">Something else here</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
+        bgDots = [
+            {
+                rad: (w+h)/2,
+                x: w/2,
+                y: 0,
+                hue: 0
+            },
+            {
+                rad: (w+h)/2,
+                x: 0,
+                y: h,
+                hue: -45
+            },
+            {
+                rad: (w+h)/2,
+                x: w,
+                y: h,
+                hue: -90
+            }
+        ];
 
+        function emitLine(){
+            if(conf.maxLines < lines.length)
+                return;
+            for(var i = 0; i < conf.emitNum; i++){
+                var rx = Math.random() * w + 100;
+                var ry = Math.random() * h - 100;
+                lines.push({
+                    x1: rx,
+                    y1: ry,
+                    x2: rx,
+                    y2: ry,
+                    length: (Math.random() * (260 - 80) + 80) * conf.length,
+                    width: (Math.random() * (15 - 5) + 5) * conf.width,
+                    v1: (Math.random() * (4 - 2) + 2) * conf.speed,
+                    v2: (Math.random() * (1 - 0.5) + 0.5) * conf.speed,
+                    half: false,
+                    hue: Math.random() * 50
+                });
+            }
+        }
 
-    <center>
-      <br><br><br>
-      <button type="button" class="btn btn-outline-light btn-lg w-50">ACCEDI</button>
+        function drawBackground(){
+            ctx.globalCompositeOperation = "lighter";
+            for(var i = 0; i < bgDots.length; i++){
+                var grd = ctx.createRadialGradient(bgDots[i].x, bgDots[i].y, 0, bgDots[i].x, bgDots[i].y, bgDots[i].rad);
+                grd.addColorStop(0, "hsla("+ (conf.hue + bgDots[i].hue) +", 100%, 60%, 0.3)");
+                grd.addColorStop(1, "hsla("+ (conf.hue + bgDots[i].hue) +", 100%, 50%, 0)");
+                ctx.beginPath();
+                ctx.arc(bgDots[i].x, bgDots[i].y, bgDots[i].rad, 0, Math.PI * 2);
+                ctx.fillStyle = grd;
+                ctx.fill();
+                ctx.closePath();
+            }
+        }
 
-      <br><br><br>
-      <h2>O</h2>
-      <br><br>
+        function drawLines(){
+            ctx.globalCompositeOperation = "lighter";
+            for(var i = 0; i < lines.length; i++){
+                ctx.lineWidth = lines[i].width;
+                ctx.beginPath();
+                ctx.moveTo(lines[i].x1, lines[i].y1);
+                ctx.lineTo(lines[i].x2, lines[i].y2);
+                ctx.strokeStyle = "hsla("+(conf.hue - lines[i].hue)+", 100%, 50%, " +(conf.opacity)+ ")";
+                ctx.lineCap = "round";
+                ctx.stroke();
+                ctx.closePath();
 
-      <button type="button" class="btn btn-outline-light btn-lg w-50">REGISTRATI</button>
-    </center>
+                if(lines[i].half == false){
+                    lines[i].x1 -= lines[i].v1;
+                    lines[i].y1 += lines[i].v1;
+                    lines[i].x2 -= lines[i].v2;
+                    lines[i].y2 += lines[i].v2;
+                    if(dist(lines[i].x1, lines[i].y1, lines[i].x2, lines[i].y2) > lines[i].length){
+                        lines[i].half = true;
+                    }
+                }else{
+                    lines[i].x1 -= lines[i].v2;
+                    lines[i].y1 += lines[i].v2;
+                    lines[i].x2 -= lines[i].v1;
+                    lines[i].y2 += lines[i].v1;
+                }
+            }
+        }
 
+        function clear(){
+            ctx.globalCompositeOperation = "source-over";
+            ctx.beginPath();
+            ctx.fillStyle = "#000";
+            ctx.fillRect(0,0,w,h);
+            ctx.closePath();
+        }
 
+        function checkLines(){
+            emitLine();
+            for(var i = 0; i < lines.length; i++){
+                if(lines[i].half == true && dist(lines[i].x1, lines[i].y1, lines[i].x2, lines[i].y2) <= 10){
+                    lines[i] = lines[lines.length - 1];
+                    lines.pop();
+                }else if(lines[i].x1 < 0 && lines[i].x2 < 0 && lines[i].y1 > h && lines[i].y2 > h){
+                    lines[i] = lines[lines.length - 1];
+                    lines.pop();
+                }
+            }
+        }
 
+        generateLines = setInterval(checkLines, 10);
+
+        function dist(x1, y1, x2, y2){
+            return Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
+        }
+
+        function render(){
+            clear();
+            drawBackground();
+            drawLines();
+            requestAnimationFrame(render);
+        }
+        render();
+    </script>
 </body>
 </html>

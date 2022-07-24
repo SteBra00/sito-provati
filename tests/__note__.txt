@@ -1,0 +1,55 @@
+da aggiundere al db:
+- tabella followers e following
+- creare un utente in mysql con credenziali specifiche; inoltre modificare le credenziali nei seguenti file:
+    \php\chat.php
+
+
+
+- Username
+- Nome e Cognome
+- Email
+- Password
+- Ripeti Password
+
++ Genere (Uomo, Donna, Uomo Trans (FtM), Donna Trans (MtF), Intersessuale, Nobinary, Gender Fluid, Altro, Preferisco Non Specificare)
+- Pronomi (He/Him, She/Her, They/Them) /*Checkbox*/
++ Orientamento (Eterosessuale, Gay, Lesbica, Bisessuale, Polisessuale, Omnisessuale, Pansessuale, Altro, Preferisco Non Specificare)
++ "Cosa cerchi?" (Amicizia, Relazione, Relazione Stabile, Matrimonio)
++ Data di nascita
+
+- Foto Profilo
+- Bio (non obbligatoria)
+- Nazionalità /*testo*/
++ Residenza 
+- Link Social
+- Foto (max: 5)
+
++ Interessi (max: 10)
+- Professione /*testo*/
+
+- Verifica la tua identità
+
+
+
+Ordinamento ricerca:
+- Username (>)
+- Username (<)
+- Matching (>)
+- Matching (<)
+- Verificati
+
+
+Filtri ricerca:
+- Fascia d'eta
+- Genere
+- Orientamento
+- Cosa cerca
+- Interessi
+- Professione
+- Nazionalità
+- distanza geografica (residenza)
+- in possesso di Social
+
+
+
+?!domande anonime!?

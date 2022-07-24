@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap'); /*font-family: 'Nunito', sans-serif;*/
+
+
+:root {
+    --primary-color: #eb0e45;
+    --hr-color: #d1d1d1;
+    color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: #eb0e45;
+        --hr-color: #444444;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*::selection {
+    color: #000000;
+    background: #eb0e459d;
+}
+
+body {
+    background: #232323;
+    color: #ffffff;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.button-submit {
+    color: var(--primary-color);
+    font-family: 'Nunito', sans-serif;
+    text-decoration: none;
+    border: 2px solid var(--primary-color);
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-weight: bold;
+    background-image: linear-gradient(var(--primary-color), var(--primary-color));
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    background-position-x: right;
+    transition: background-size 500ms;
+}
+
+.button-submit:hover {
+    text-shadow: 0 0 2px #000000;
+    background-size: 100% 100%;
+    background-position-x: left;
+}
+
+.input-error::placeholder {
+    color: black;
+    background: #eb0e45;
+}
+
+.hr {
+    width: 90%;
+    height: 3px;
+    background: var(--hr-color);
+    border: 0;
+}
