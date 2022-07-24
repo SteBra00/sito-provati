@@ -21,8 +21,48 @@
         }
     ?>
 
-    <main>
+    <?php
+        $mysql = new mysqli('localhost', 'root', '', 'provaci_db');
+        if($mysql->connect_errno) {
+            echo 'Errore connessione al database';
+            exit();
+        }
 
+        $result = $mysql->query("SELECT * FROM user WHERE username='".$_SESSION['username']."'");
+        if(!$result) {
+            echo 'Errore: '.$mysql->error;
+            exit();
+        } elseif($result->num_rows==1) {
+            $user = $result->fetch_assoc();
+        } else {
+            echo 'Errore';
+            echo $_SESSION['username'];
+            exit();
+        }
+    ?>
+
+    <nav>
+        <form action="search.php" method="GET">
+            <input type="search" name="text" placeholder="Cerca" required>
+            <input type="submit" value="Vai">
+        </form>
+        <a href="chats.php">Chats</a>
+        <a href="search.php">Cerca</a>
+        <a href="matching.php">Matching</a>
+        <a href="settings.php">Impostazioni</a>
+        <a href="signout.php">Signout</a>
+    </nav>
+
+    <main>
+        <img class="account-picture" src="
+            <?php
+                if($user['profilePicture']=='') {
+                    echo '../img/default_account_picture.png';
+                } else {
+                    echo '../users/pictures/'.$user['profilePicture'];
+                }
+            ?>
+        ">
     </main>
 </body>
 </html>

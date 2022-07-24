@@ -36,11 +36,15 @@
         <div id="google-signin2" class="button-external-login"></div>
         <script>
             function onSuccess(googleUser) {
-                console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+                let profile = googleUser.getBasicProfile();
+                let name = profile.getName();
+                let email = profile.getEmail();
+                let 
             }
 
             function onFailure(error) {
                 console.log(error);
+                /* Print error */
             }
 
             function renderButton() {

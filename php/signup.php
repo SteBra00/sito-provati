@@ -31,13 +31,23 @@
             }
             $email = $_POST['email'];
             $password = $_POST['password'];
-            
-            $_SESSION['username'] = $username;
-            $_SESSION['name_surname'] = $name_surname;
-            $_SESSION['email'] = $email;
-            $_SESSION['password'] = $password;
 
+            $mysql = new mysqli('localhost', 'root', '', 'provaci_db');
+            if($mysql->connect_errno) {
+                echo 'Errore connessione al database';
+                exit();
+            }
+
+            $password = password_hash($password, PASSWORD_DEFAULT);
+            $result = $mysql->query("INSERT INTO user (username, name_surname, email, password) VALUES ('$username', '$name_surname', '$email', '$password')");
+            if(!$result) {
+                echo 'Errore: '.$mysql->error;
+                exit();
+            }
+            
             $_SESSION['isLogged'] = true;
+            $_SESSION['username'] = $username;
+            $_SESSION['password'] = $password;
 
             header('location: create_account_data.php');
             exit();
