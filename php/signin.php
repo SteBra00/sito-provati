@@ -59,7 +59,7 @@
     <main class="form-container">
         <form action="#" method="POST">
             <p class="form-title">Signin</p>
-            <input type="text" class="form-input" name="usename" placeholder="Username" required>
+            <input type="text" class="form-input" name="username" placeholder="Username" required>
             <input type="password" class="form-input" name="password" placeholder="Password" required>
             <input type="submit" class="button-submit" value="Accedi">
             <small>Non hai un account? <a href="signup.php">Registrati</a></small>
