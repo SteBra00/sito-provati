@@ -157,6 +157,8 @@
             if(password.value!=rip_password.value) {
                 $('#error-container').html('<p class="error">Conferma la password</p>');
                 rip_password.focus();
+                event.preventDefault();
+                return true;
             }
 
             $.ajax({
@@ -169,10 +171,11 @@
 
             if($('#error-container').html()!='') {
                 event.preventDefault();
-                return false;
+                return true;
             }
 
-            return true;
+            event.target.parentNode.dispatchEvent(event);
+            return false;
         }
     </script>
 </body>
