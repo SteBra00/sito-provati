@@ -146,7 +146,7 @@ INSERT INTO gender(name) VALUES
     ('Gender Fluid'),
     ('Altro');
 
-INSERT INTO pronouns(name) VALUES
+INSERT INTO pronoun(name) VALUES
     ('He/Him'),
     ('She/Her'),
     ('They/Them'),

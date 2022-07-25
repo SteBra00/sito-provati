@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS gender (
     name VARCHAR(20) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS pronouns (
+CREATE TABLE IF NOT EXISTS pronoun (
     id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     name VARCHAR(10) NOT NULL
 );
@@ -69,11 +69,11 @@ CREATE TABLE IF NOT EXISTS user (
     verified BOOLEAN DEFAULT 0
 );
 
-CREATE TABLE IF NOT EXISTS user_pronouns (
+CREATE TABLE IF NOT EXISTS user_pronoun (
     user INTEGER NOT NULL,
     FOREIGN KEY (user) REFERENCES user(id),
-    pronouns INTEGER NOT NULL,
-    FOREIGN KEY (pronouns) REFERENCES pronouns(id)
+    pronoun INTEGER NOT NULL,
+    FOREIGN KEY (pronoun) REFERENCES pronoun(id)
 );
 
 CREATE TABLE IF NOT EXISTS user_whatLookingFor (
