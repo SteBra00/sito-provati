@@ -102,3 +102,18 @@ CREATE TABLE IF NOT EXISTS liked (
     userTo_id INTEGER NOT NULL,
     FOREIGN KEY (userTo_id) REFERENCES user(id)
 );
+
+CREATE TABLE IF NOT EXISTS blocked (
+    userFrom_id INTEGER NOT NULL,
+    FOREIGN KEY (userFrom_id) REFERENCES user(id),
+    userTo_id INTEGER NOT NULL,
+    FOREIGN KEY (userTo_id) REFERENCES user(id)
+);
+
+CREATE TABLE IF NOT EXISTS matched (
+    userFrom_id INTEGER NOT NULL,
+    FOREIGN KEY (userFrom_id) REFERENCES user(id),
+    userTo_id INTEGER NOT NULL,
+    FOREIGN KEY (userTo_id) REFERENCES user(id),
+    compatibility INTEGER NOT NULL DEFAULT 100
+);
