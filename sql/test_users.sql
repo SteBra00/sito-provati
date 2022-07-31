@@ -148,7 +148,7 @@ INSERT INTO user(
     TRUE
 );
 
-INSERT INTO user_pronoun(user, pronoun) VALUES
+INSERT INTO user_pronoun(user_id, pronoun_id) VALUES
     ((SELECT id FROM user WHERE username='SuperMario99'), 1),
     ((SELECT id FROM user WHERE username='Pippolino'), 1),
     ((SELECT id FROM user WHERE username='Pippolino'), 2),
@@ -157,7 +157,7 @@ INSERT INTO user_pronoun(user, pronoun) VALUES
     ((SELECT id FROM user WHERE username='Mari78'), 3),
     ((SELECT id FROM user WHERE username='Nina000'), 3);
 
-INSERT INTO user_whatLookingFor(user, whatLookingFor) VALUES
+INSERT INTO user_whatLookingFor(user_id, whatLookingFor_id) VALUES
     ((SELECT id FROM user WHERE username='SuperMario99'), 4),
     ((SELECT id FROM user WHERE username='Pippolino'), 1),
     ((SELECT id FROM user WHERE username='Pippolino'), 2),
@@ -165,7 +165,7 @@ INSERT INTO user_whatLookingFor(user, whatLookingFor) VALUES
     ((SELECT id FROM user WHERE username='Mari78'), 4),
     ((SELECT id FROM user WHERE username='Roby01'), 3);
 
-INSERT INTO user_interest(user, interest) VALUES
+INSERT INTO user_interest(user_id, interest_id) VALUES
     ((SELECT id FROM user WHERE username='SuperMario99'), 1),
     ((SELECT id FROM user WHERE username='SuperMario99'), 2),
     ((SELECT id FROM user WHERE username='SuperMario99'), 3),
@@ -208,3 +208,18 @@ INSERT INTO user_interest(user, interest) VALUES
     ((SELECT id FROM user WHERE username='Roby01'), 31),
     ((SELECT id FROM user WHERE username='Roby01'), 37),
     ((SELECT id FROM user WHERE username='Roby01'), 43);
+
+INSERT INTO liked(userFrom_id, userTo_id) VALUES
+    ((SELECT id FROM user WHERE username='SuperMario99'), (SELECT id FROM user WHERE username='Pippolino')),
+    ((SELECT id FROM user WHERE username='SuperMario99'), (SELECT id FROM user WHERE username='Mari78')),
+    ((SELECT id FROM user WHERE username='SuperMario99'), (SELECT id FROM user WHERE username='Nina000')),
+    ((SELECT id FROM user WHERE username='Pippolino'), (SELECT id FROM user WHERE username='SuperMario99')),
+    ((SELECT id FROM user WHERE username='Pippolino'), (SELECT id FROM user WHERE username='Mari78')),
+    ((SELECT id FROM user WHERE username='Mari78'), (SELECT id FROM user WHERE username='SuperMario99')),
+    ((SELECT id FROM user WHERE username='Mari78'), (SELECT id FROM user WHERE username='Pippolino')),
+    ((SELECT id FROM user WHERE username='Mari78'), (SELECT id FROM user WHERE username='Roby01')),
+    ((SELECT id FROM user WHERE username='Nina000'), (SELECT id FROM user WHERE username='SuperMario99')),
+    ((SELECT id FROM user WHERE username='Nina000'), (SELECT id FROM user WHERE username='Pippolino')),
+    ((SELECT id FROM user WHERE username='Roby01'), (SELECT id FROM user WHERE username='SuperMario99')),
+    ((SELECT id FROM user WHERE username='Roby01'), (SELECT id FROM user WHERE username='Pippolino')),
+    ((SELECT id FROM user WHERE username='Roby01'), (SELECT id FROM user WHERE username='Mari78'));

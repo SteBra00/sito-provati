@@ -11,8 +11,8 @@ CREATE TABLE IF NOT EXISTS province (
     id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     name VARCHAR(25) NOT NULL,
     abbreviation VARCHAR(5) NOT NULL,
-    region INTEGER NOT NULL,
-    FOREIGN KEY (region) REFERENCES region(id)
+    region_id INTEGER NOT NULL,
+    FOREIGN KEY (region_id) REFERENCES region(id)
 );
 
 CREATE TABLE IF NOT EXISTS gender (
@@ -66,26 +66,39 @@ CREATE TABLE IF NOT EXISTS user (
     photography4 TINYTEXT,
     photography5 TINYTEXT,
     profession VARCHAR(40),
-    verified BOOLEAN DEFAULT 0
+    verified BOOLEAN NOT NULL DEFAULT 0,
+    hideEmail BOOLEAN NOT NULL DEFAULT 0,
+    hideBorn BOOLEAN NOT NULL DEFAULT 0,
+    hideNationality BOOLEAN NOT NULL DEFAULT 0,
+    hideLocality BOOLEAN NOT NULL DEFAULT 0,
+    profileColor VARCHAR(7) NOT NULL DEFAULT '#DA0707',
+    profileDark BOOLEAN NOT NULL DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS user_pronoun (
-    user INTEGER NOT NULL,
-    FOREIGN KEY (user) REFERENCES user(id),
-    pronoun INTEGER NOT NULL,
-    FOREIGN KEY (pronoun) REFERENCES pronoun(id)
+    user_id INTEGER NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user(id),
+    pronoun_id INTEGER NOT NULL,
+    FOREIGN KEY (pronoun_id) REFERENCES pronoun(id)
 );
 
 CREATE TABLE IF NOT EXISTS user_whatLookingFor (
-    user INTEGER NOT NULL,
-    FOREIGN KEY (user) REFERENCES user(id),
-    whatLookingFor INTEGER NOT NULL,
-    FOREIGN KEY (whatLookingFor) REFERENCES whatLookingFor(id)
+    user_id INTEGER NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user(id),
+    whatLookingFor_id INTEGER NOT NULL,
+    FOREIGN KEY (whatLookingFor_id) REFERENCES whatLookingFor(id)
 );
 
 CREATE TABLE IF NOT EXISTS user_interest (
-    user INTEGER NOT NULL,
-    FOREIGN KEY (user) REFERENCES user(id),
-    interest INTEGER NOT NULL,
-    FOREIGN KEY (interest) REFERENCES interest(id)
-)
+    user_id INTEGER NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user(id),
+    interest_id INTEGER NOT NULL,
+    FOREIGN KEY (interest_id) REFERENCES interest(id)
+);
+
+CREATE TABLE IF NOT EXISTS liked (
+    userFrom_id INTEGER NOT NULL,
+    FOREIGN KEY (userFrom_id) REFERENCES user(id),
+    userTo_id INTEGER NOT NULL,
+    FOREIGN KEY (userTo_id) REFERENCES user(id)
+);
