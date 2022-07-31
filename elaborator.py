@@ -16,6 +16,7 @@ class User:
         self.interests:List[int] = list()
         self.whatLookingFor:List[int] = list()
         self.userLiked:List[int] = list()
+        self.userBlocked:List[int] = list()
     
     def addInterst(self, interes:int) -> None:
         self.interests.append(interes)
@@ -25,6 +26,9 @@ class User:
     
     def addUserLiked(self, userLiked:int) -> None:
         self.userLiked.append(userLiked)
+    
+    def addUserBlocked(self, userBlocked:int) -> None:
+        self.userBlocked.append(userBlocked)
 
 
 class MatchElaborator:
@@ -57,11 +61,19 @@ class MatchElaborator:
         for userLiked in self.cursor.fetchall():
             user.addUserLiked(userLiked[0])
         
+        self.cursor.execute(f"SELECT userTo_id FROM blocked WHERE userFrom_id={id}")
+        for userBlocked in self.cursor.fetchall():
+            user.addUserBlocked(userBlocked[0])
+        
         return user
     
     def elaborate(self, user1:User, user2:User) -> Union[int, bool]:
         # Contatore di compatibilità
         compatibility:int = 0
+
+        # Controlla che l'utente1 non abbia bloccato l'utente2
+        if user1.userBlocked.count(user2.id)>0:
+            return False
 
         # Controlla se sono dello stesso orientamento, in caso affermativo controlla che questo non sia eterosessuale
         if user1.orientation==user2.orientation:
