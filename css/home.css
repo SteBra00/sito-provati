@@ -27,19 +27,31 @@
 
 .profession {}
 
-.link-social {}
+.link-social {
+    text-decoration: none;
+    color: #ffffff;
+    transition: 0.5s;
+}
 
-.social-icon {}
+.link-instagram:hover {
+    text-shadow: 0 0 15px #e1306c;
+}
 
-.instagram-icon {}
+.link-facebook:hover {
+    text-shadow: 0 0 15px #3b5998;
+}
 
-.facebook-icon {}
+.link-telegram:hover {
+    text-shadow: 0 0 15px #0088cc;
+}
 
-.telegram-icon {}
+.link-snapchat:hover {
+    text-shadow: 0 0 15px #fffc00;
+}
 
-.snapchat-icon {}
-
-.twitter-icon {}
+.link-twitter:hover {
+    text-shadow: 0 0 15px #00acee;
+}
 
 
 .slideshow-container {
