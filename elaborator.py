@@ -36,6 +36,8 @@ class MatchElaborator:
         self.console = console
         self.database = mysql.connector.connect(host='127.0.0.1', user='root', password='', database='provaci_db')
         self.cursor = self.database.cursor()
+        self.cursor.execute("DELETE FROM matched WHERE 1=1")
+        self.database.commit()
     
     def getNumUsers(self) -> int:
         self.cursor.execute("SELECT COUNT(*) FROM user")
@@ -105,7 +107,6 @@ class MatchElaborator:
         # Controlla se all'utente2 piace l'utente1
         if user1.id in user2.userLiked:
             compatibility += 60
-        
 
         if compatibility>=100:
             self.cursor.execute(f"INSERT INTO matched (userFrom_id, userTo_id, compatibility) VALUES ('{user1.id}', '{user2.id}', '{compatibility}')")
