@@ -1,0 +1,123 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-button {
+    background: #5a5a5a;
+    border-radius: 15px;
+    height: 90px;
+    width: 350px;
+    height: min-content();
+    display: flex;
+    cursor: pointer;
+    margin: 10px;
+    box-shadow: 0 0 5px var(--primary-color);
+}
+
+.modal-button-image {
+    width: 30%;
+    height: auto;
+    border-radius: 15px 0 0 15px;
+}
+
+.modal-button-text {
+    display: grid;
+    padding: 20px;
+    font-size: 1.5vw;
+    font-family: 'Nunito', sans-serif;
+    color: #000000;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    background-color: #000000;
+    background-color: #00000066;
+}
+
+.modal-content {
+    background-color: #4e4e4e;
+    margin: 9vw auto;
+    padding: 2vw;
+    border-radius: 15px;
+    width: 80vw;
+    display: flex;
+}
+
+.modal-left {
+    width: 50%;
+    height: 100%;
+}
+
+.modal-left-image {
+    width: 100%;
+    height: auto;
+}
+
+.modal-right {}
+
+.modal-right-text {}
+
+.modal-right-buttons * {
+    margin: 5px;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
