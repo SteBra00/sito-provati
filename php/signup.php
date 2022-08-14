@@ -9,9 +9,9 @@
     <meta property="og:url" content="http://127.0.0.1/SitoProvaci/">
     <meta property="og:image" content="../img/og-icon.jpeg">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/f0d3a88d82.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <title>Provaci.it - Registrati</title>
-    <link rel="stylesheet" href="../css/general_style.css">
-    <link rel="stylesheet" href="../css/signup.css">
 </head>
 <body>
     <?php
@@ -54,9 +54,18 @@
         }
     ?>
 
-    <main class="form-container">
-        <form action="#" method="POST" class="form" onsubmit="return formControl(event);">
-            <input type="text" id="username" name="username" placeholder="Username*" class="form-input" required>
+    <main class="container">
+        <form action="#" method="POST" id="signup-form" onsubmit="return formIsValid();" onchange="checkForm();">
+            <div class="input-group has-validation">
+                <div class="form-floating is-invalid">
+                    <input type="text" class="form-control is-invalid" id="username" name="username" placeholder="MarioRossi123" required>
+                    <label for="username">Username</label>
+                </div>
+                <div class="invalid-feedback">
+                    Please choose a username.
+                </div>
+            </div>
+
             <input type="text" name="name_surname" placeholder="Nome e Cognome*" class="form-input">
             <input type="email" id="email" name="email" placeholder="Email* (esempio@email.it)" class="form-input" required>
             <input type="password" id="password" name="password" placeholder="Password*" minlength="6" class="form-input" required oninput="valutatePassword(this);">
@@ -146,37 +155,39 @@
             }
         }
 
-        function formControl(event) {
-            $('#error-container').html('');
+        function checkForm() {
+            let error = $('#error-container');
+            error.html('');
 
             const password = document.getElementById('password');
             const rip_password = document.getElementById('rip_password');
             const username = document.getElementById('username');
             const email = document.getElementById('email');
-            
-            if(password.value!=rip_password.value) {
-                $('#error-container').html('<p class="error">Conferma la password</p>');
-                rip_password.focus();
-                event.preventDefault();
-                return true;
-            }
 
             $.ajax({
-                url: `check_data_signup.php?username=${username.value}&email=${email.value}`
-            }).done(function(result) {
-                if(result=='1') {
-                    $('#error-container').html('<p class="error">Username o Email già utilizzati</p>');
+                url: `check_data_signup.php?username=${username.value}&email=${email.value}`,
+                success: function(result) {
+                    if(result=='1') {
+                        error.html('<p class="error">Username o Email già utilizzati</p>');
+                    }
                 }
             });
+            
+            if(password.value!=rip_password.value) {
+                error.html('<p class="error">Conferma la password</p>');
+                rip_password.focus();
+            }
+        }
 
-            if($('#error-container').html()!='') {
-                event.preventDefault();
+        function formIsValid() {
+            if($('#error-container').children().length>0) {
+                return false;
+            } else {
                 return true;
             }
-
-            event.target.parentNode.dispatchEvent(event);
-            return false;
         }
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
 </html>
